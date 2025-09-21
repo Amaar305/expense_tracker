@@ -85,11 +85,11 @@ class _HomePageState extends State<HomePage> {
                                       fit: BoxFit.cover,
                                       errorBuilder:
                                           (context, error, stackTrace) {
-                                        return const Icon(
-                                          Icons.person,
-                                          color: ColorStyles.primaryColor,
-                                        );
-                                      },
+                                            return const Icon(
+                                              Icons.person,
+                                              color: ColorStyles.primaryColor,
+                                            );
+                                          },
                                     )
                                   : const Icon(
                                       Icons.person,
@@ -122,7 +122,8 @@ class _HomePageState extends State<HomePage> {
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
-                                      "assets/images/budget_wallet.png"),
+                                    "assets/images/budget_wallet.png",
+                                  ),
                                 ),
                               ),
                             ),
@@ -135,18 +136,20 @@ class _HomePageState extends State<HomePage> {
                                 children: <Widget>[
                                   Text(
                                     "Your Balance",
-                                    style: TextStyles.smallMedium
-                                        .copyWith(color: ColorStyles.gray),
+                                    style: TextStyles.smallMedium.copyWith(
+                                      color: ColorStyles.gray,
+                                    ),
                                   ),
                                   const SizedBox(height: 12.0),
                                   Text(
-                                    "\$ $balance",
+                                    "N $balance",
                                     style: TextStyles.humongous.copyWith(
-                                        color: ColorStyles.lightGreen),
-                                  )
+                                      color: ColorStyles.lightGreen,
+                                    ),
+                                  ),
                                 ],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       );
@@ -171,8 +174,8 @@ class _HomePageState extends State<HomePage> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             const CalculatorPage(
-                                          isInflow: true,
-                                        ),
+                                              isInflow: true,
+                                            ),
                                       ),
                                     );
                                   },
@@ -216,8 +219,8 @@ class _HomePageState extends State<HomePage> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             const CalculatorPage(
-                                          isInflow: false,
-                                        ),
+                                              isInflow: false,
+                                            ),
                                       ),
                                     );
                                   },
@@ -236,8 +239,9 @@ class _HomePageState extends State<HomePage> {
                                         SvgPicture.asset(
                                           "assets/svg/cash_outward.svg",
                                           colorFilter: ColorFilter.mode(
-                                            ColorStyles.red
-                                                .withValues(alpha: 0.8),
+                                            ColorStyles.red.withValues(
+                                              alpha: 0.8,
+                                            ),
                                             BlendMode.srcIn,
                                           ),
                                         ),
@@ -250,7 +254,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -270,9 +274,7 @@ class _HomePageState extends State<HomePage> {
                   latestExpenses = latestExpenses.take(5).toList();
 
                   return latestExpenses.isEmpty
-                      ? const Center(
-                          child: Text("No recent transactions"),
-                        )
+                      ? const Center(child: Text("No recent transactions"))
                       : Container(
                           width: double.infinity,
                           color: const Color(0xfff2f4f7),
@@ -311,8 +313,9 @@ class _HomePageState extends State<HomePage> {
                                   itemBuilder: (BuildContext __, int index) {
                                     final expense = latestExpenses[index];
                                     return Container(
-                                      margin:
-                                          const EdgeInsets.only(bottom: 8.0),
+                                      margin: const EdgeInsets.only(
+                                        bottom: 8.0,
+                                      ),
                                       child: BudgetWidget(
                                         budgetType: expense.isInflow
                                             ? BudgetType.inFlow
@@ -329,7 +332,7 @@ class _HomePageState extends State<HomePage> {
                         );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

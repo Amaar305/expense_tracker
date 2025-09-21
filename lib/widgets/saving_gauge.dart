@@ -10,7 +10,7 @@ class HalfCirclePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final backgroundPaint = Paint()
-      ..color = const Color(0xff2abf7c).withValues(alpha:0.3)
+      ..color = const Color(0xff2abf7c).withValues(alpha: 0.3)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 8.0;
 
@@ -52,7 +52,7 @@ class HalfCirclePainter extends CustomPainter {
       text: TextSpan(
         children: [
           TextSpan(
-            text: "\$${saved.toStringAsFixed(2)}\n",
+            text: "N${saved.toStringAsFixed(2)}\n",
             style: const TextStyle(
               fontSize: 34.0,
               color: Colors.black,
@@ -60,7 +60,7 @@ class HalfCirclePainter extends CustomPainter {
             ),
           ),
           TextSpan(
-            text: "of \$${target.toStringAsFixed(2)}",
+            text: "of N${target.toStringAsFixed(2)}",
             style: const TextStyle(
               fontSize: 16.0,
               color: Colors.black54,

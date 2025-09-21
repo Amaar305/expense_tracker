@@ -25,8 +25,11 @@ class IntroWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Container(
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(imageAssetPath), fit: BoxFit.contain)),
+                image: DecorationImage(
+                  image: AssetImage(imageAssetPath),
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
           ),
         ),
@@ -45,11 +48,11 @@ class IntroWidget extends StatelessWidget {
                     color: ColorStyles.secondaryTextColor,
                   ),
                   textAlign: TextAlign.center,
-                )
+                ),
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -59,11 +62,12 @@ class ReportSummaryWidget extends StatelessWidget {
   final double totalInflow;
   final double totalOutflow;
   final double balance;
-  const ReportSummaryWidget(
-      {super.key,
-      required this.totalInflow,
-      required this.totalOutflow,
-      required this.balance});
+  const ReportSummaryWidget({
+    super.key,
+    required this.totalInflow,
+    required this.totalOutflow,
+    required this.balance,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -73,20 +77,22 @@ class ReportSummaryWidget extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6.0),
-              color: ColorStyles.lightGreen.withValues(alpha:0.2),
+              color: ColorStyles.lightGreen.withValues(alpha: 0.2),
             ),
             padding: const EdgeInsets.all(20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                reportContent("INFLOW", "\$${totalInflow.toStringAsFixed(2)}"),
+                reportContent("INFLOW", "N${totalInflow.toStringAsFixed(2)}"),
                 reportContent(
-                    "OUTFLOW", " \$${totalOutflow.toStringAsFixed(2)}"),
-                reportContent("BALANCE", "\$${balance.toStringAsFixed(2)}"),
+                  "OUTFLOW",
+                  " N${totalOutflow.toStringAsFixed(2)}",
+                ),
+                reportContent("BALANCE", "N${balance.toStringAsFixed(2)}"),
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -99,24 +105,19 @@ class ReportSummaryWidget extends StatelessWidget {
         children: <Widget>[
           Text(
             name,
-            style:
-                TextStyles.smallMedium.copyWith(color: ColorStyles.lightGreen),
+            style: TextStyles.smallMedium.copyWith(
+              color: ColorStyles.lightGreen,
+            ),
           ),
           const SizedBox(height: 4.0),
-          Text(
-            amount,
-            style: TextStyles.bodyBold,
-          )
+          Text(amount, style: TextStyles.bodyBold),
         ],
       ),
     );
   }
 }
 
-enum BudgetType {
-  inFlow,
-  outFlow,
-}
+enum BudgetType { inFlow, outFlow }
 
 class BudgetWidget extends StatelessWidget {
   final BudgetType budgetType;
@@ -143,10 +144,11 @@ class BudgetWidget extends StatelessWidget {
           height: 44.0,
           width: 44.0,
           decoration: BoxDecoration(
-            color: ((budgetType == BudgetType.inFlow)
-                    ? ColorStyles.lightGreen
-                    : ColorStyles.red)
-                .withValues(alpha:0.2),
+            color:
+                ((budgetType == BudgetType.inFlow)
+                        ? ColorStyles.lightGreen
+                        : ColorStyles.red)
+                    .withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(100.0),
           ),
           child: Center(
@@ -162,12 +164,13 @@ class BudgetWidget extends StatelessWidget {
         ),
         title: Text(
           (budgetType == BudgetType.inFlow) ? "RECEIVED FROM" : "SPENT ON",
-          style: TextStyles.smallMedium
-              .copyWith(color: ColorStyles.secondaryTextColor),
+          style: TextStyles.smallMedium.copyWith(
+            color: ColorStyles.secondaryTextColor,
+          ),
         ),
         subtitle: Text(source, style: TextStyles.body),
         trailing: Text(
-          "${(budgetType == BudgetType.inFlow) ? "+" : "-"}\$${amount.toString()}",
+          "${(budgetType == BudgetType.inFlow) ? "+" : "-"}N${amount.toString()}",
           style: TextStyles.body.copyWith(
             color: ((budgetType == BudgetType.inFlow)
                 ? ColorStyles.lightGreen

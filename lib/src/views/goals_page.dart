@@ -27,10 +27,7 @@ class GoalsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xfff2f4f7),
       body: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 24.0,
-          vertical: 32.0,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,9 +43,7 @@ class GoalsPage extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 12.0,
-            ),
+            const SizedBox(height: 12.0),
             AnimatedBuilder(
               animation: _goalProvider,
               builder: (context, child) {
@@ -58,9 +53,7 @@ class GoalsPage extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(
-              height: 12.0,
-            ),
+            const SizedBox(height: 12.0),
             AnimatedBuilder(
               animation: _goalProvider,
               builder: (context, child) {
@@ -103,10 +96,7 @@ class GoalsPage extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: const Column(
         children: [
-          Text(
-            "You don't have any saving goals yet.",
-            style: TextStyles.body,
-          ),
+          Text("You don't have any saving goals yet.", style: TextStyles.body),
           SizedBox(height: 8.0),
           Text(
             "Tap the + button to add a new goal!",
@@ -137,8 +127,9 @@ class GoalsPage extends StatelessWidget {
 
   Widget _buildGoalCard(BuildContext context, Goal goal) {
     final progress = goal.savedAmount / goal.targetAmount;
-    final randomColor = Color((Random().nextDouble() * 0xFFFFFF).toInt())
-        .withValues(alpha: 1.0);
+    final randomColor = Color(
+      (Random().nextDouble() * 0xFFFFFF).toInt(),
+    ).withValues(alpha: 1.0);
 
     final IconData iconData = _categoryIcons[goal.category] ?? Icons.star;
 
@@ -167,11 +158,7 @@ class GoalsPage extends StatelessWidget {
                   color: randomColor,
                 ),
                 child: Center(
-                  child: Icon(
-                    iconData,
-                    color: Colors.white,
-                    size: 24.0,
-                  ),
+                  child: Icon(iconData, color: Colors.white, size: 24.0),
                 ),
               ),
               const SizedBox(height: 8),
@@ -183,7 +170,7 @@ class GoalsPage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                '\$${goal.savedAmount.toStringAsFixed(2)} / \$${goal.targetAmount.toStringAsFixed(2)}',
+                'N${goal.savedAmount.toStringAsFixed(2)} / N${goal.targetAmount.toStringAsFixed(2)}',
                 style: TextStyles.smallMedium.copyWith(
                   color: Colors.grey,
                   fontWeight: FontWeight.normal,
@@ -229,10 +216,7 @@ class GoalsPage extends StatelessWidget {
           ),
           title: const Text(
             'Add New Goal',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24.0,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),
           ),
           content: SingleChildScrollView(
             child: Form(
@@ -288,19 +272,20 @@ class GoalsPage extends StatelessWidget {
                       ),
                     ),
                     initialValue: category,
-                    items: [
-                      'House',
-                      'Car',
-                      'Vacation',
-                      'Education',
-                      'Emergency Fund',
-                      'Other'
-                    ].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                    items:
+                        [
+                          'House',
+                          'Car',
+                          'Vacation',
+                          'Education',
+                          'Emergency Fund',
+                          'Other',
+                        ].map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                     onChanged: (String? newValue) {
                       category = newValue!;
                     },
@@ -380,8 +365,10 @@ class GoalsPage extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorStyles.primaryColor,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -390,14 +377,16 @@ class GoalsPage extends StatelessWidget {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
-                  _goalProvider.addGoal(Goal(
-                    name: name,
-                    description: description,
-                    targetAmount: targetAmount,
-                    startDate: startDate.toIso8601String(),
-                    endDate: endDate.toIso8601String(),
-                    category: category,
-                  ));
+                  _goalProvider.addGoal(
+                    Goal(
+                      name: name,
+                      description: description,
+                      targetAmount: targetAmount,
+                      startDate: startDate.toIso8601String(),
+                      endDate: endDate.toIso8601String(),
+                      category: category,
+                    ),
+                  );
                   Navigator.of(context).pop();
                 }
               },
@@ -433,10 +422,7 @@ class GoalsPage extends StatelessWidget {
                 const Text(
                   'How many times do you want to be reminded to save money today?',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.black54,
-                  ),
+                  style: TextStyle(fontSize: 16.0, color: Colors.black54),
                 ),
                 const SizedBox(height: 20.0),
                 Row(
@@ -506,10 +492,7 @@ class GoalsPage extends StatelessWidget {
               ),
               title: const Text(
                 'Automated Saving',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24.0,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),
               ),
               content: SingleChildScrollView(
                 child: Form(
@@ -534,9 +517,12 @@ class GoalsPage extends StatelessWidget {
                                 if (_goalProvider.isGoalAutomated(goal))
                                   const Padding(
                                     padding: EdgeInsets.only(left: 8.0),
-                                    child: Icon(Icons.access_time,
-                                        color: Colors.blue, size: 16),
-                                  )
+                                    child: Icon(
+                                      Icons.access_time,
+                                      color: Colors.blue,
+                                      size: 16,
+                                    ),
+                                  ),
                               ],
                             ),
                           );
@@ -582,13 +568,17 @@ class GoalsPage extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.redAccent,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
+                              horizontal: 20,
+                              vertical: 10,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          child: const Text('Stop Automation',
-                              style: TextStyle(fontSize: 16)),
+                          child: const Text(
+                            'Stop Automation',
+                            style: TextStyle(fontSize: 16),
+                          ),
                           onPressed: () {
                             _goalProvider.cancelAutomatedSaving(selectedGoal!);
                             Navigator.of(context).pop();
@@ -605,13 +595,17 @@ class GoalsPage extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorStyles.primaryColor,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
+                              horizontal: 20,
+                              vertical: 10,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          child: const Text('Start Automation',
-                              style: TextStyle(fontSize: 16)),
+                          child: const Text(
+                            'Start Automation',
+                            style: TextStyle(fontSize: 16),
+                          ),
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
